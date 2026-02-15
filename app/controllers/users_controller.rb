@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
   def index
-    # Stub: return mock users
-    @users = [
-      { 'id' => 'alice-johnson', 'first_name' => 'Alice', 'last_name' => 'Johnson', 'email' => 'alice@example.com', 'custom_attributes' => { 'team' => 'Engineering' } },
-      { 'id' => 'bob-smith', 'first_name' => 'Bob', 'last_name' => 'Smith', 'email' => 'bob@example.com', 'custom_attributes' => { 'team' => 'Design' } },
-      { 'id' => 'carol-williams', 'first_name' => 'Carol', 'last_name' => 'Williams', 'email' => 'carol@example.com', 'custom_attributes' => { 'team' => 'Product' } },
-      { 'id' => 'david-brown', 'first_name' => 'David', 'last_name' => 'Brown', 'email' => 'david@example.com', 'custom_attributes' => { 'team' => 'Engineering' } },
-      { 'id' => 'emma-davis', 'first_name' => 'Emma', 'last_name' => 'Davis', 'email' => 'emma@example.com', 'custom_attributes' => { 'team' => 'Marketing' } },
-      { 'id' => 'frank-miller', 'first_name' => 'Frank', 'last_name' => 'Miller', 'email' => 'frank@example.com', 'custom_attributes' => { 'team' => 'Sales' } }
-    ]
+    @users = User.all.map do |user|
+      {
+        'id' => user.id,
+        'first_name' => user.first_name,
+        'last_name' => user.last_name,
+        'email' => user.email,
+        'high_fives_received' => user.high_fives.count,
+        'custom_attributes' => {
+          'team' => 'Team' # Placeholder
+        }
+      }
+    end.sort_by { |user| user['id'] == current_user['id'] ? 0 : 1 }
     render template: 'users'
   end
 end

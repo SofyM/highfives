@@ -9,35 +9,33 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <% @users.each do |user| %>
         <% team_name = user['custom_attributes']&.dig('team') %>
-        <% given_count = high_fives_store.fetch(user['id'], []).count { |entry| entry[:giver_id] == current_user['id'] } %>
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow cursor-default" data-high-five-card>
           <div class="mb-3">
             <div class="flex items-start justify-between gap-3">
               <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold"><%= user['first_name'] %> <%= user['last_name'] %></h3>
-                <% if team_name.present? %>
-                  <span class="inline-flex items-center rounded-full bg-[rgb(58_187_139)] text-white px-2 py-1 text-xs font-semibold">
-                    <%= team_name %>
-                  </span>
-                <% end %>
-              </div>
-              <p class="text-[11px] text-gray-600 dark:text-gray-400 whitespace-nowrap" title="High fives received">
-                ✋ <span data-high-five-count><%= given_count %></span>
+              <h3 class="text-lg font-bold"><%= user['id'] == current_user['id'] ? 'You' : "#{user['first_name']} #{user['last_name']}" %></h3>
+              <% if team_name.present? %>
+                <span class="inline-flex items-center rounded-full bg-[rgb(58_187_139)] text-white px-2 py-1 text-xs font-semibold">
+                  <%= team_name %>
+                </span>
+              <% end %>
+            </div>
+            <p class="text-[11px] text-gray-600 dark:text-gray-400 whitespace-nowrap" title="High fives received">
+              ✋ <span data-high-five-count><%= user['high_fives_received'] %></span>
               </p>
             </div>
             <p class="text-gray-600 dark:text-gray-400 text-xs"><%= user['email'] %></p>
-          </div>
-          
-          <%= button_to high_fives_path,
+            
+            <%= button_to high_fives_path,
               method: :post,
               params: { recipient_id: user['id'] },
               class: "high-five-button group w-full text-sm font-semibold rounded-lg transition",
               form: { data: { high_five_form: true } },
               data: { high_five_button: true } do %>
             <span class="high-five-button__inner">
-              <span class="high-five-button__face high-five-button__front w-full bg-[rgb(58_187_139)] group-hover:bg-[rgb(46_156_114)] text-white rounded-lg px-3 py-2 border-2 border-transparent dark:bg-transparent dark:text-[rgb(58_187_139)] dark:border-[rgb(58_187_139)] dark:group-hover:bg-gray-700">
+              <span class="high-five-button__face high-five-button__front w-full bg-[rgb(58_187_139)] group-hover:bg-[rgb(46_156_114)] text-white rounded-lg px-3 py-2 border-2 border-transparent dark:bg-transparent dark:text-[rgb(58_187_139)] dark:border-[rgb(58_187_139)] dark:group-hover:bg-[rgba(46,156,114,0.15)]">
                 <span class="high-five-spinner" aria-hidden="true"></span>
-                <span class="high-five-label whitespace-nowrap">High five!</span>
+                <span class="high-five-label whitespace-nowrap"><%= user['id'] == current_user['id'] ? 'Self five!' : 'High five!' %></span>
                 <span class="high-five-message whitespace-nowrap"></span>
               </span>
               <span class="high-five-button__face high-five-button__back w-full bg-[rgb(58_187_139)] text-white rounded-lg px-3 py-2 whitespace-nowrap border-2 border-transparent dark:bg-transparent dark:text-[rgb(58_187_139)] dark:border-[rgb(58_187_139)]">🎉 High five logged!</span>

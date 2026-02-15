@@ -1,19 +1,40 @@
 class AuthController < ApplicationController
-  skip_before_action :ensure_session, only: [:authorize, :callback]
+  skip_before_action :require_authentication, only: [:authorize, :callback]
 
   def authorize
+    @auth_url = WorkOS::SSO.authorization_url(
+      client_id: ENV['WORKOS_CLIENT_ID'],
+      redirect_uri: ENV['WORKOS_REDIRECT_URI'],
+      organization: ENV['WORKOS_ORGANIZATION_ID']
+    )
     render template: 'authorize'
   end
 
   def callback
-    # Stub: just set session and redirect to home
-    session[:user_id] = SecureRandom.hex(16)
-    session[:user_name] = "Demo User"
-    redirect_to home_path
+    code = params[:code]
+    error = params[:error]
+
+    if error.present? || code.blank?
+      redirect_to login_path, alert: "Authentication failed: #{params[:error_description]}"
+      return
+    end
+
+    begin
+      result = WorkOS::SSO.profile_and_token(
+        client_id: ENV['WORKOS_CLIENT_ID'],
+        code: code
+      )
+
+      user = User.from_sso(result.profile)
+      session[:user_id] = user.id
+      redirect_to home_path, notice: "Successfully logged in"
+    rescue WorkOS::InvalidRequestError => e
+      redirect_to login_path, alert: "Authentication failed: #{e.message}"
+    end
   end
 
   def logout
-    session.clear
-    redirect_to auth_authorize_path, notice: "Logged out"
+    reset_session
+    redirect_to login_path
   end
 end

@@ -3,11 +3,10 @@ class HighFivesController < ApplicationController
     recipient_id = params[:recipient_id]
     giver_id = session[:user_id]
 
-    high_fives_store[recipient_id] ||= []
-    high_fives_store[recipient_id] << {
-      giver_id: giver_id,
-      timestamp: Time.current
-    }
+    HighFive.create(
+      user_id: recipient_id,
+      giver_id: giver_id
+    )
 
     if request.xhr?
       head :ok
