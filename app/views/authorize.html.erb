@@ -1,0 +1,24 @@
+<div class="min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-[rgb(58_187_139)] mb-2">HighFives</h1>
+        <p class="text-gray-600 dark:text-gray-400">Celebrate your team together</p>
+      </div>
+      
+      <div class="space-y-4">
+        <% if @auth_url %>
+          <%= link_to "Sign in with Okta", @auth_url, class: "w-full block text-center px-6 py-3 bg-[rgb(58_187_139)] hover:bg-[rgb(46_156_114)] text-white font-semibold rounded-lg transition border-2 border-transparent dark:bg-transparent dark:text-[rgb(58_187_139)] dark:border-[rgb(58_187_139)] dark:hover:bg-[rgb(58_187_139)/0.15]" %>
+        <% else %>
+          <div class="text-center text-red-600 dark:text-red-400">
+            <p>Unable to load authentication. Please check your WorkOS configuration.</p>
+          </div>
+        <% end %>
+      </div>
+      
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+        Sign in with your organization's Okta credentials
+      </p>
+    </div>
+  </div>
+</div>

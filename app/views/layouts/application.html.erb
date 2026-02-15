@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="scroll-smooth">
+  <head>
+    <title>High5</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+      if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        
+        if (isDark) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+    </script>
+  </head>
+
+  <body class="h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors flex flex-col overflow-hidden">
+    <% if current_user %>
+      <nav class="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
+        <div class="mx-auto flex justify-between items-center">
+          <%= link_to home_path, class: "text-2xl font-bold text-[rgb(58_187_139)] hover:text-[rgb(46_156_114)] transition-colors" do %>
+            ✋ High5
+          <% end %>
+          <div class="flex items-center gap-4">
+            <%= link_to users_path, class: "text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" do %>
+              <%= current_user['first_name'] %> <%= current_user['last_name'] %>
+            <% end %>
+            <button 
+              onclick="toggleTheme()" 
+              class="px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              title="Toggle dark mode">
+              <span class="hidden dark:inline">☀️</span>
+              <span class="dark:hidden">🌙</span>
+            </button>
+            <%= button_to "Logout", auth_logout_path, method: :delete, class: "px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition" %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+    
+    <main class="flex-1 overflow-auto">
+      <% if notice %>
+        <div class="bg-green-100 dark:bg-green-900 border-l-4 border-green-500 text-green-700 dark:text-green-200 p-4 m-4">
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="bg-red-100 dark:bg-red-900 border-l-4 border-red-500 text-red-700 dark:text-red-200 p-4 m-4">
+          <%= alert %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

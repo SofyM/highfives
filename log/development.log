@@ -1,0 +1,165 @@
+Started GET "/" for 127.0.0.1 at 2026-02-15 13:19:55 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 720)
+  Rendered layout layouts/application.html.erb (Duration: 41.1ms | Allocations: 10376)
+Completed 500 Internal Server Error in 100ms (Allocations: 15391)
+
+
+  
+ActionView::Template::Error (link_tree argument must be a directory):
+  
+app/assets/config/manifest.js:1
+Started GET "/" for 127.0.0.1 at 2026-02-15 13:20:33 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 720)
+  Rendered layout layouts/application.html.erb (Duration: 42.7ms | Allocations: 24519)
+Completed 200 OK in 52ms (Views: 49.2ms | Allocations: 29543)
+
+
+Started GET "/home" for 127.0.0.1 at 2026-02-15 13:20:38 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 112)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2341)
+Completed 200 OK in 16ms (Views: 13.7ms | Allocations: 2834)
+
+
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:20:41 -0500
+  
+SyntaxError (/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+    render template: \"users\"
+                     ^
+/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:14: unterminated string meets end of file
+/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+app/controllers/users_controller.rb:14: unterminated string meets end of file
+app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+app/controllers/users_controller.rb:14: unterminated string meets end of file
+app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:21:01 -0500
+  
+SyntaxError (/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+    render template: \"users\"
+                     ^
+/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:14: unterminated string meets end of file
+/Users/sofymaia/Library/Mobile Documents/com~apple~CloudDocs/Backup/_Projects/In Progress/HighFives/app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+app/controllers/users_controller.rb:14: unterminated string meets end of file
+app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:12: syntax error, unexpected backslash, expecting `end'
+app/controllers/users_controller.rb:14: unterminated string meets end of file
+app/controllers/users_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2026-02-15 13:21:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2026-02-15 13:21:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/home" for 127.0.0.1 at 2026-02-15 13:21:51 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 3381)
+Completed 200 OK in 15ms (Views: 14.0ms | Allocations: 4554)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2026-02-15 13:21:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:21:55 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users.html.erb within layouts/application
+  Rendered users.html.erb within layouts/application (Duration: 3.5ms | Allocations: 2326)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 5279)
+Completed 200 OK in 13ms (Views: 11.1ms | Allocations: 6435)
+
+
+Started POST "/high_fives" for 127.0.0.1 at 2026-02-15 13:21:58 -0500
+Processing by HighFivesController#create as */*
+  Parameters: {"authenticity_token"=>"7jQzioATLcVz1w9Zh92pMhwXRgv6oLWT8ZF0L47tKGRM-vVAkaPzymgSsHNjr484ps1NSdrwBuW6nEDwlVrkMA", "recipient_id"=>"alice-johnson"}
+Completed 200 OK in 3ms (Allocations: 515)
+
+
+Started POST "/high_fives" for 127.0.0.1 at 2026-02-15 13:22:00 -0500
+Processing by HighFivesController#create as */*
+  Parameters: {"authenticity_token"=>"9sjTs6lDZ-AqWS4TnoCk3LaeOz89togtzz6ms9j5-zFUBhV5uPO57zGckTl68oLWDEQwfR3mO1uEM5Jsw043ZQ", "recipient_id"=>"emma-davis"}
+Completed 200 OK in 1ms (Allocations: 316)
+
+
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:22:04 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users.html.erb within layouts/application
+  Rendered users.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1891)
+  Rendered layout layouts/application.html.erb (Duration: 28.1ms | Allocations: 4227)
+Completed 200 OK in 31ms (Views: 29.2ms | Allocations: 4747)
+
+
+Started GET "/home" for 127.0.0.1 at 2026-02-15 13:22:06 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 378)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 2829)
+Completed 200 OK in 18ms (Views: 16.8ms | Allocations: 3553)
+
+
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:22:08 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users.html.erb within layouts/application
+  Rendered users.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1847)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4074)
+Completed 200 OK in 10ms (Views: 9.0ms | Allocations: 4595)
+
+
+Started GET "/random_high_five" for 127.0.0.1 at 2026-02-15 13:22:09 -0500
+Processing by HomeController#random_high_five as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering random_high_five.html.erb within layouts/application
+  Rendered random_high_five.html.erb within layouts/application (Duration: 0.8ms | Allocations: 97)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 2334)
+Completed 200 OK in 11ms (Views: 9.2ms | Allocations: 2781)
+
+
+Started POST "/random_high_five" for 127.0.0.1 at 2026-02-15 13:22:10 -0500
+Processing by HomeController#random_high_five as */*
+Completed 200 OK in 1ms (Views: 0.1ms | Allocations: 387)
+
+
+Started GET "/users" for 127.0.0.1 at 2026-02-15 13:22:15 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users.html.erb within layouts/application
+  Rendered users.html.erb within layouts/application (Duration: 15.7ms | Allocations: 1866)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | Allocations: 4097)
+Completed 200 OK in 22ms (Views: 20.7ms | Allocations: 4532)
+
+
+Started POST "/random_high_five" for 127.0.0.1 at 2026-02-15 13:22:16 -0500
+Processing by HomeController#random_high_five as */*
+Completed 200 OK in 2ms (Views: 0.3ms | Allocations: 353)
+
+
+Started GET "/home" for 127.0.0.1 at 2026-02-15 13:22:21 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index.html.erb within layouts/application
+  Rendered index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 112)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 2338)
+Completed 200 OK in 11ms (Views: 10.3ms | Allocations: 2733)
+
+
