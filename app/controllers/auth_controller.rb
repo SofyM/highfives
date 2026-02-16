@@ -26,6 +26,18 @@ class AuthController < ApplicationController
       )
 
       user = User.from_sso(result.profile)
+      begin
+        WorkosEventsSync.new(organization_id: result.profile.organization_id).call
+      rescue StandardError => e
+        Rails.logger.warn("WorkOS events sync failed: #{e.class}: #{e.message}")
+      end
+      user = User.find_by(id: user.id)
+      if user.nil? || user.directory_state == 'inactive'
+        reset_session
+        redirect_to login_path, alert: "Your account is inactive."
+        return
+      end
+
       session[:user_id] = user.id
       redirect_to home_path, notice: "Successfully logged in"
     rescue WorkOS::InvalidRequestError => e

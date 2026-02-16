@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_15_000002) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_15_000005) do
   create_table "high_fives", force: :cascade do |t|
     t.integer "user_id", null: false
     t.bigint "giver_id", null: false
@@ -29,8 +29,21 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_15_000002) do
     t.string "connection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "directory_user_id"
+    t.string "directory_id"
+    t.string "directory_state"
+    t.string "team"
+    t.index ["directory_user_id"], name: "index_users_on_directory_user_id", unique: true
     t.index ["email"], name: "index_users_on_email"
     t.index ["workos_id"], name: "index_users_on_workos_id", unique: true
+  end
+
+  create_table "workos_event_cursors", force: :cascade do |t|
+    t.string "organization_id", null: false
+    t.string "last_event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_workos_event_cursors_on_organization_id", unique: true
   end
 
   add_foreign_key "high_fives", "users"
