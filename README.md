@@ -24,8 +24,9 @@ You will need the following to run this app locally:
      git clone https://github.com/SofyM/highfives.git
      ```
 
-2. Run the setup script.
+2. `cd` into the folder of the app, and then run the setup script.
      ```bash
+     cd highfives
      sh setup.sh
      ```
 
@@ -45,6 +46,9 @@ You will need the following to run this app locally:
 
      # Initialize the database
      bin/rails db:migrate
+
+     # Build Tailwind CSS
+     bin/rails tailwindcss:build
      ```
      </blockquote>
      </details> 
