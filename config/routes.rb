@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "home", to: "home#index"
-  get "login", to: "auth#authorize"
+  get "login", to: "auth#login"
+  post "login", to: "auth#sso_redirect"
   get "auth/callback", to: "auth#callback"
   delete "logout", to: "auth#logout"
   get "random_high_five", to: "home#random_high_five"

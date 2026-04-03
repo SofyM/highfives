@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :require_authentication, except: [:authorize, :callback]
+  before_action :require_authentication, except: %i[login sso_redirect callback]
   helper_method :current_user
 
   private
@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil unless session[:user_id]
+
     @current_user ||= User.find_by(id: session[:user_id])
   end
 end

@@ -11,7 +11,11 @@ gem "turbo-rails"
 gem "tailwindcss-rails", "~> 3.3.1"
 gem "workos"
 
+group :development, :test do
+  gem "dotenv-rails"
+end
+
 group :development do
   gem "foreman", require: false
-  gem "pry-rails", require: false
+  gem "pry-rails"
 end

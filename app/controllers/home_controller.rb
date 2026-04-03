@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
+  skip_before_action :require_authentication, only: [:index]
+
   def index
-    render template: 'index'
+    if current_user
+      render template: 'index'
+    else
+      render template: 'auth/login'
+    end
   end
 
   def random_high_five
