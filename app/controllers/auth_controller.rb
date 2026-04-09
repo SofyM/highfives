@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  skip_before_action :require_authentication, only: %i[login sso_redirect callback]
+  skip_before_action :require_authentication, only: %i[login sso_redirect authorize callback]
 
   def login
     render :login
@@ -16,12 +16,26 @@ class AuthController < ApplicationController
       return
     end
 
+    if connections.data.length == 1
+      auth_url = WorkOS::SSO.authorization_url(
+        client_id: ENV["WORKOS_CLIENT_ID"],
+        redirect_uri: ENV["WORKOS_REDIRECT_URI"],
+        connection: connections.data.first.id
+      )
+      redirect_to auth_url, allow_other_host: true
+    else
+      @connections = connections.data
+      render :choose_connection
+    end
+  end
+
+  def authorize
+    connection_id = params[:connection_id]
     auth_url = WorkOS::SSO.authorization_url(
       client_id: ENV["WORKOS_CLIENT_ID"],
       redirect_uri: ENV["WORKOS_REDIRECT_URI"],
-      organization: connections.data.first.organization_id
+      connection: connection_id
     )
-
     redirect_to auth_url, allow_other_host: true
   end
 

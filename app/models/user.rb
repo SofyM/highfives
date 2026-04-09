@@ -16,7 +16,8 @@ class User < ApplicationRecord
       first_name: profile.first_name,
       last_name: profile.last_name,
       organization_id: profile.organization_id,
-      connection_id: profile.connection_id
+      connection_id: profile.connection_id,
+      team: profile.custom_attributes[:department_name]
     )
     user.workos_id = profile.id if user.workos_id.blank? || user.workos_id != profile.id
     user.save
